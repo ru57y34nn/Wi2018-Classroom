@@ -1,5 +1,7 @@
 #simple.py
+import syslogserver as ss
 import logging
+import logging.handlers
 from datetime import datetime
 
 #now = datetime.now()
@@ -18,8 +20,8 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(formatter)
 
-syslog_handler = logging.DatagramHandler()
-syslog_handler.setLevel(logging.ERROR)
+syslog_handler = logging.handlers.DatagramHandler(ss.HOST, ss.PORT)
+syslog_handler.setLevel(logging.DEBUG)
 syslog_handler.setFormatter(formatter2)
 
 logger = logging.getLogger()
